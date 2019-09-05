@@ -4,7 +4,7 @@ class Photon {
         this.pos = pos;
         this.v = new Vector(-c, 0);
         this.a = new Vector(0, 0);
-        //TODO history
+        // TODO history
     }
 
     updateSpeed(bh) {
@@ -12,13 +12,13 @@ class Photon {
         this.a.setMag(
             (G * bh.m) / Math.pow(this.a.mag / scale, 2)
         );
-        this.v.x += this.a.x * (frameDelay / 1000) * factor;
-        this.v.y += this.a.y * (frameDelay / 1000) * factor;
+        this.v.x += this.a.x * (frameDelay / 1000) / factor;
+        this.v.y += this.a.y * (frameDelay / 1000) / factor;
     }
 
     update() {
-        this.pos.x += ((this.v.x * frameDelay / 1000) * scale) * factor;
-        this.pos.y += ((this.v.y * frameDelay / 1000) * scale) * factor;
+        this.pos.x += ((this.v.x * frameDelay / 1000) * scale) / factor;
+        this.pos.y += ((this.v.y * frameDelay / 1000) * scale) / factor;
     }
 
     show() {

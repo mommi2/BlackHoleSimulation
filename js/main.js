@@ -27,13 +27,13 @@ function start() {
     m87.show();
     m87.print();
 
-    p = new Photon(new Vector(content.width - 50, 200));
+    p = new Photon(new Vector(content.width - 50, content.height / 2 - m87.rs * scale * 2.6));
     console.log("TEMPORAL FACTOR = " + factor);
     setInterval(animatedLoop, frameDelay);
 }
 
 function animatedLoop() {
-    if (Vector.sub(m87.pos, p.pos).mag > m87.rs * scale){
+    if (Vector.sub(m87.pos, p.pos).mag > m87.rs * scale) {
         p.updateSpeed(m87);
         p.update();
         p.print();
