@@ -5,6 +5,7 @@ class BlackHole {
         this.sr = ((2 * G * m) / (Math.pow(c, 2)));
         scale = background.height / ((10 * this.sr));
         factor = this.sr / c;
+        deltaT *= factor / 2;
         this.pos = new Vector(pos.x / scale, pos.y / scale);
     }
 

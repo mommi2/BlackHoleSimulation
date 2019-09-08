@@ -6,26 +6,24 @@ class Photon {
         this.a = new Vector(0, 0);
         //TODO history
     }
-
+    
     updateSpeed(bh) {
         this.a = Vector.sub(bh.pos, this.pos);
         this.a.setMag(
             (G * bh.m) / Math.pow(this.a.mag, 2)
         );
-        this.v.x += this.a.x * (frameDelay / 1000);
-        this.v.y += this.a.y * (frameDelay / 1000);
+        this.v = Vector.add(this.v, Vector.scalar(this.a, deltaT));
         this.v.setMag(c);
     }
 
     update() {
-        this.pos.x += (this.v.x) * (frameDelay / 1000);
-        this.pos.y += (this.v.y) * (frameDelay / 1000);
+        this.pos = Vector.add(this.pos, Vector.scalar(this.v, deltaT));
     }
 
     show() {
         ctxC.fillStyle = "#f9a825";
         ctxC.beginPath();
-        ctxC.arc(this.pos.x * scale, this.pos.y * scale, 2, 0, Math.PI * 2, false);
+        ctxC.arc(this.pos.x * scale, this.pos.y * scale, 1, 0, Math.PI * 2, false);
         ctxC.fill(); 
     }
 
@@ -37,5 +35,13 @@ class Photon {
         console.log("\tv.y: " + this.v.y);
         console.log("\ta.x: " + this.a.x);
         console.log("\ta.y: " + this.a.y);
+    }
+
+    status() {
+        return "PHOTON STATUS <br>" +
+            "X: " + this.pos.x + "<br>Y: " + this.pos.y +
+            "<br>Vx: " + this.v.x + " <br>Vy: " + this.v.y + 
+            "<br>Ax: " + this.a.x + "<br>Ay: " + this.a.y +
+            "<br>Real X: " + this.pos.x * scale + "<br>Real Y: " + this.pos.y * scale;
     }
 }
